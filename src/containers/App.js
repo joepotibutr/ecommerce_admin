@@ -9,7 +9,8 @@ import Products from './Products'
 import ManageUsers from './ManageUsers'
 import Orders from './Orders'
 import SideNav from '../components/SideNav'
-import Footer from '../components/Footer'
+// import Footer from '../components/Footer'
+import NotificationBar from '../components/NotificationBar'
 
 
 class App extends Component {
@@ -18,14 +19,15 @@ class App extends Component {
       <Router>
         <div>
           <SideNav/>
-          <div style={{float:'right',width:'84%',padding:'40px'}}>
+          <NotificationBar/>
+          <div style={{float:'right',width:'86%',padding:'30px 60px'}}>
           <Route exact path="/" component={LoginAdmin} />
           <Route path="/Overview" component={Overview} />
           <Route path="/products" component={Products} />
           <Route path="/orders" component={Orders} />
           <Route path="/manage-users" component={ManageUsers} />
           </div>
-          <Footer/>
+          {/* <Footer/> */}
         </div>
       </Router>
     )

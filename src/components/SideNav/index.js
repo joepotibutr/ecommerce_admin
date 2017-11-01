@@ -7,34 +7,21 @@ const SideNav = () => {
     return (
         <Sidebar>
         <List>
-            <div style={{marginBottom:'45px'}}>
-            <li style={{marginBottom:'40px'}}>
-                <Container>
-                <Image centered shape='circular' size={'tiny'} src='https://react.semantic-ui.com/assets/images/avatar/large/patrick.png' />
-                </Container>
-            </li>
-            <li style={{marginBottom:'30px'}}>
-                <Header inverted textAlign={'center'} as='h4'>
-                    Admin
-                </Header>
-            </li>
-            </div>
-            <Divider section/>
-            <div style={{marginTop:'45px'}}>
+            <div style={{marginTop:'50px'}}>
             <Item>
-                <Icon inverted name="home"/>
+                <Icon disabled inverted name="home"/>
                 <RenderLink to='/overview'>Overview</RenderLink>
             </Item>
             <Item>
-                <Icon inverted name={'users'}/>
+                <Icon disabled inverted name={'users'}/>
                 <RenderLink to='/manage-users'>Manage Users</RenderLink>
             </Item>
             <Item>
-                <Icon inverted name={'line graph'}/>
+                <Icon disabled inverted name={'line graph'}/>
                 <RenderLink to='/orders'>Orders</RenderLink>
             </Item>
             <Item>
-                <Icon inverted name={'tags'}/>
+                <Icon disabled inverted name={'tags'}/>
                 <RenderLink to='/products'>Products</RenderLink>
             </Item>
             </div>

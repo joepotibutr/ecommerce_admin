@@ -3,26 +3,30 @@ import styled from 'styled-components'
 export const Sidebar = styled.div`
     position:fixed;
     float:left;
-    width:230px;
+    width:200px;
     
     background-color:#333;
-    top:0;
+    top:71px;
     left:0;
     bottom:0;
-
 `
 
 export const List = styled.ul`
     list-style-type: none;
     margin:0;
     padding:0;
-    padding-top:80px;
 `
 
 export const Item = styled.li`
-    display:inline-block;
+    display:flex;
     text-decoration:none;
     width:100%;
-    height:70px;
-    padding-left:50px;
+    height:60px;
+    padding-left:35px;
+    align-items:center;
+    transition:.3s;
+    :hover{
+        background:black;
+        color:white;
+    }
 `

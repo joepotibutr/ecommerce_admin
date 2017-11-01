@@ -4,7 +4,7 @@ import { Table , Segment , Button , Icon } from 'semantic-ui-react'
 const RenderUsersTable = () => {
     return (
         <Segment>
-        <Table singleLine basic={'very'} style={{padding:'20px 20px 0 20px'}}>
+        <Table singleLine basic={'very'} size={'small'} style={{padding:'20px 20px 0 20px'}}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell width={'2'} textAlign={'center'} >User ID</Table.HeaderCell>
