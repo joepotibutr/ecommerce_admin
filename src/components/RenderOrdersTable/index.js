@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table , Segment , Button , Icon } from 'semantic-ui-react'
+import { Table , Segment , Icon } from 'semantic-ui-react'
 
 const RenderOrdersTable = () => {
     return (

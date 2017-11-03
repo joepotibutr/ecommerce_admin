@@ -1,6 +1,7 @@
 import React , {Component} from 'react'
 import { Table , Segment , Button , Icon , Modal } from 'semantic-ui-react'
-import ProductForm from '../ProductForm'
+import CreateProductForm from '../CreateProductForm'
+import EditProductForm from '../EditProductForm'
 
 
 class RenderProductsTable extends Component {
@@ -41,8 +42,8 @@ class RenderProductsTable extends Component {
                     <Modal.Header content={'Edit Product'}/>
                     <Modal.Content>
                         <Modal.Description>
-                            <ProductForm
-                                btn={'Save'}
+                            <EditProductForm
+                                
                             />
                         </Modal.Description>
                     </Modal.Content>
@@ -78,8 +79,8 @@ class RenderProductsTable extends Component {
                         <Modal.Header content={'New Product'}/>
                         <Modal.Content>
                             <Modal.Description>
-                                <ProductForm
-                                    btn={'Add'}
+                                <CreateProductForm
+                                   
                                 />
                             </Modal.Description>
                         </Modal.Content>

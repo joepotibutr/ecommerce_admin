@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Form , Button , List } from 'semantic-ui-react'
+import { Form , List } from 'semantic-ui-react'
 import CategoryDropDown from '../CategoryDropDown'
 import Dropzone from 'react-dropzone'
 
 
-class ProductForm extends Component {
+class CreateProductForm extends Component {
     constructor(props) {
         super(props)
         this.state = { files: [] }
@@ -64,11 +64,11 @@ class ProductForm extends Component {
                         </List>
                     </Form.Field>
                     <Form.Field>
-                        <Form.Button fluid content={this.props.btn} />
+                        <Form.Button fluid content={'Save'} />
                     </Form.Field>
             </Form>
         )
     }
 }
 
-export default ProductForm
+export default CreateProductForm

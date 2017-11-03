@@ -11,27 +11,35 @@ import Orders from './Orders'
 import SideNav from '../components/SideNav'
 // import Footer from '../components/Footer'
 import NotificationBar from '../components/NotificationBar'
+import { connect } from 'react-redux'
+import { fetchUsersAction } from '../actions'
 
 
 class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <SideNav/>
-          <NotificationBar/>
-          <div style={{float:'right',width:'86%',padding:'30px 60px'}}>
-          <Route exact path="/" component={LoginAdmin} />
-          <Route path="/Overview" component={Overview} />
-          <Route path="/products" component={Products} />
-          <Route path="/orders" component={Orders} />
-          <Route path="/manage-users" component={ManageUsers} />
+    componentDidMount(){
+      this.props.fetchUsersAction()
+    }
+
+    render() {
+      return (
+        <Router>
+          <div>
+            <SideNav/>
+            <NotificationBar/>
+            <div style={{float:'right',width:'86%',padding:'30px 60px'}}>
+            <Route exact path="/" component={LoginAdmin} />
+            <Route path="/Overview" component={Overview} />
+            <Route path="/products" component={Products} />
+            <Route path="/orders" component={Orders} />
+            <Route path="/manage-users" component={ManageUsers} />
+            </div>
+            {/* <Footer/> */}
           </div>
-          {/* <Footer/> */}
-        </div>
-      </Router>
-    )
-  }
+        </Router>
+      )
+    }
 }
 
-export default App;
+
+
+export default connect(null,{fetchUsersAction})(App);

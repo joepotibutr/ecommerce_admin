@@ -1,5 +1,8 @@
 import React from 'react'
-import { Menu , Icon , Container , Image ,Dropdown , Feed } from 'semantic-ui-react'
+import { Menu , Icon , Image ,Dropdown , Feed , Label } from 'semantic-ui-react'
+
+const avatar = ( <Image centered shape='circular' size={'mini'} src='https://react.semantic-ui.com/assets/images/avatar/large/patrick.png' />)
+
 
 
 const NotificationBar = () => {
@@ -10,6 +13,11 @@ const NotificationBar = () => {
        <label style={{marginLeft:'20px',marginRight:'25px',fontSize:'14px'}}>DASHBOARD</label>
         </Menu.Item>
         <Menu.Item position={'right'}>
+          <Label
+          color={'red'}
+          size={'mini'}
+          style={{position:'relative',top:'-7px',left:'29px',zIndex:'2',marginLeft:'0'}} 
+          circular >5</Label>
           <Dropdown pointing={'top'} icon={'alarm outline'}>
             <Dropdown.Menu style={{left:'-143px',top:'23px'}}>
               <Dropdown.Item>
@@ -29,7 +37,15 @@ const NotificationBar = () => {
           <label style={{fontSize:'14px'}}>Vatchrapong Pothiboot</label>
         </Menu.Item>
         <Menu.Item>
-            <Image centered shape='circular' size={'mini'} src='https://react.semantic-ui.com/assets/images/avatar/large/patrick.png' />
+    
+        <Dropdown
+         pointing={'top right'} icon={null} trigger={avatar}>
+         <Dropdown.Menu  style={{fontSize:'14px'}} >
+          <Dropdown.Item text={'Setting'} icon={'setting'}/>
+          <Dropdown.Item text={'Sign Out'} icon={'sign out'}/>
+          
+         </Dropdown.Menu>
+         </Dropdown>
         </Menu.Item>
         <Menu.Item/>
 

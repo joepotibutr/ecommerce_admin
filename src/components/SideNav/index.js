@@ -1,7 +1,7 @@
 import React from 'react'
 import { List , Item , Sidebar } from './styled'
 import RenderLink from '../Etc/RenderLink'
-import { Icon , Image , Header , Container , Divider } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 
 const SideNav = () => {
     return (
