@@ -3,10 +3,14 @@ import { Grid , Header } from 'semantic-ui-react'
 import UsersTable from '../components/UsersTable'
 import RenderUsers from '../components/RenderUsers'
 import { connect } from 'react-redux'
-import { getVisibleUsers } from '../reducers/users'
+import { setVisibleUsers } from '../actions'
 
 class ManageUsers extends Component {
+    componentWillMount(){
+        this.props.setVisibleUsers()
+    }
     render() {
+
         const { users } = this.props
         return (
             <Grid>
@@ -26,9 +30,6 @@ class ManageUsers extends Component {
         )
     }
 }
-const mapStateToProps = state => ({
-    users : getVisibleUsers(state.users)
-})
 
 
-export default connect(mapStateToProps)(ManageUsers)
+export default connect(null,{setVisibleUsers})(ManageUsers)

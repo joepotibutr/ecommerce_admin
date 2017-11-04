@@ -1,5 +1,7 @@
 import React from 'react'
-import { Table , Icon } from 'semantic-ui-react' 
+import { Table , Icon } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { getVisibleUsers } from '../../reducers/users'
 
 const RenderUsers = ({ users }) => {
     const mapUsers = users.map((user,index) => 
@@ -18,6 +20,10 @@ const RenderUsers = ({ users }) => {
     )
 }
 
+const mapStateToProps = state => ({
+    users : getVisibleUsers(state.users)
+})
 
-export default RenderUsers
+
+export default connect(mapStateToProps)(RenderUsers)
 

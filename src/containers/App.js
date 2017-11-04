@@ -11,15 +11,10 @@ import Orders from './Orders'
 import SideNav from '../components/SideNav'
 // import Footer from '../components/Footer'
 import NotificationBar from '../components/NotificationBar'
-import { connect } from 'react-redux'
-import { setVisibleUsers } from '../actions'
+
 
 
 class App extends Component {
-    componentDidMount(){
-      this.props.setVisibleUsers()
-    }
-
     render() {
       return (
         <Router>
@@ -33,7 +28,6 @@ class App extends Component {
             <Route path="/orders" component={Orders} />
             <Route path="/manage-users" component={ManageUsers} />
             </div>
-            {/* <Footer/> */}
           </div>
         </Router>
       )
@@ -42,4 +36,4 @@ class App extends Component {
 
 
 
-export default connect(null,{setVisibleUsers})(App);
+export default App
