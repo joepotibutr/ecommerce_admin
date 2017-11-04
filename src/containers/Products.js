@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid , Header} from 'semantic-ui-react'
-import RenderProductsTable from '../components/RenderProductsTable'
+import ProductsTable from '../components/ProductsTable'
 
 class Products extends Component {
     render() {
@@ -13,7 +13,7 @@ class Products extends Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
-                        <RenderProductsTable/>
+                        <ProductsTable/>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>

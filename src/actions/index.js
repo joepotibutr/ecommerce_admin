@@ -12,7 +12,7 @@ const _removeUser = index => ({
     index
 })
 
-const _fetchUsers = users => ({
+const fetchUsers = users => ({
     type : types.FETCH_USERS , 
     users
 })
@@ -25,6 +25,6 @@ export const removeUserAction = index => dispatch => {
     dispatch(_removeUser(index))
 }
 
-export const fetchUsersAction = () => dispatch => {
-    dispatch(_fetchUsers(users))
+export const setVisibleUsers = () => dispatch => {
+    dispatch(fetchUsers(users))
 }

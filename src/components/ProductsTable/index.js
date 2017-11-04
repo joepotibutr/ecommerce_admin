@@ -4,15 +4,8 @@ import CreateProductForm from '../CreateProductForm'
 import EditProductForm from '../EditProductForm'
 
 
-class RenderProductsTable extends Component {
+class ProductsTable extends Component {
     render(){
-
-      
-
-        // const renderButton = (
-        //     )
-
-
     return (
         <Segment>
             <Table singleLine basic={'very'} style={{padding:'20px 20px 0 20px'}}>
@@ -94,4 +87,4 @@ class RenderProductsTable extends Component {
     }
 }
 
-export default RenderProductsTable
+export default ProductsTable

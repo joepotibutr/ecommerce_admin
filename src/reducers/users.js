@@ -6,16 +6,12 @@ const initialState = {
     users : {}
 }
 
-const fetchUsers = (state = initialState.users,action) => {
+const fetchUsers = (state = [],action) => {
     switch(action.type) {
         case FETCH_USERS : 
-            return {
-                ...state,
-                ...action.users.reduce((obj,user) => {
-                    obj[user.id] = user 
-                    return obj
-                },{})
-            }
+            return [
+                ...action.users
+            ]
         default : 
             return state
     }
@@ -24,7 +20,7 @@ const fetchUsers = (state = initialState.users,action) => {
 const userHandler = (state = initialState.users,action) => {
     switch(action.type) {
         case ADD_USER :
-            return [...state]
+            return state
         case REMOVE_USER :
             return {
                 users : [
@@ -36,10 +32,6 @@ const userHandler = (state = initialState.users,action) => {
     }
 }
 
-export const getVisibleUsers = state =>
-    state.fetchUsers
-
-
-
+export const getVisibleUsers = state => state.fetchUsers
 
 export default combineReducers({ userHandler , fetchUsers })

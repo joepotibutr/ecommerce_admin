@@ -1,7 +1,7 @@
 import React from 'react'
 import { Table , Segment , Icon } from 'semantic-ui-react'
 
-const RenderOrdersTable = () => {
+const OrdersTable = () => {
     return (
         <Segment>
         <Table singleLine basic={'very'} style={{padding:'20px 20px 0 20px'}}>
@@ -53,4 +53,4 @@ const RenderOrdersTable = () => {
     )
 }
 
-export default RenderOrdersTable
+export default OrdersTable

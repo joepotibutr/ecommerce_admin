@@ -12,12 +12,12 @@ import SideNav from '../components/SideNav'
 // import Footer from '../components/Footer'
 import NotificationBar from '../components/NotificationBar'
 import { connect } from 'react-redux'
-import { fetchUsersAction } from '../actions'
+import { setVisibleUsers } from '../actions'
 
 
 class App extends Component {
     componentDidMount(){
-      this.props.fetchUsersAction()
+      this.props.setVisibleUsers()
     }
 
     render() {
@@ -42,4 +42,4 @@ class App extends Component {
 
 
 
-export default connect(null,{fetchUsersAction})(App);
+export default connect(null,{setVisibleUsers})(App);

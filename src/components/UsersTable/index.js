@@ -1,9 +1,9 @@
 import React from 'react'
 import { Table , Segment , Button , Icon } from 'semantic-ui-react'
-import { connect } from 'react-redux'
-import { getVisibleUsers } from '../../reducers/users'
 
-const RenderUsersTable = ({users}) => {
+
+
+const UsersTable = ({ users , children }) => {
         return (
             <Segment>
             <Table singleLine basic={'very'} size={'small'} style={{padding:'20px 20px 0 20px'}}>
@@ -16,16 +16,9 @@ const RenderUsersTable = ({users}) => {
                         <Table.HeaderCell textAlign={'center'} >Delete User</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                <Table.Body >
-                <Table.Row>
-                    <Table.Cell textAlign={'center'} >903887</Table.Cell>
-                    <Table.Cell ><a>jhlilk22@yahoo.com</a></Table.Cell>
-                    <Table.Cell>September 14, 2013</Table.Cell>
-                    <Table.Cell textAlign={'center'}>Admin</Table.Cell>
-                    <Table.Cell textAlign={'center'} ><Icon name={'x'}/></Table.Cell>
-                </Table.Row>
-            
-                </Table.Body>
+              
+                    {children}
+               
                 <Table.Footer fullWidth>
                 <Table.Row>
                     <Table.HeaderCell colSpan='5'>
@@ -40,10 +33,7 @@ const RenderUsersTable = ({users}) => {
         )
     
 }
-const mapStateToProps = state => ({
-    users : getVisibleUsers(state.users)
-})
 
 
 
-export default connect(mapStateToProps)(RenderUsersTable)
+export default UsersTable
