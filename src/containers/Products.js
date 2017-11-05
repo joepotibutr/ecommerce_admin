@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 import { Grid , Header} from 'semantic-ui-react'
 import ProductsTable from '../components/ProductsTable'
+import RenderProducts from '../components/RenderProducts'
+import { setVisibleProducts } from '../actions'
+import { connect } from 'react-redux'
 
 class Products extends Component {
+    
+    componentDidMount() {
+        this.props.setVisibleProducts()
+    }
+    
     render() {
         return (
             <Grid>
@@ -13,11 +21,14 @@ class Products extends Component {
                 </Grid.Row>
                 <Grid.Row>
                     <Grid.Column>
-                        <ProductsTable/>
+                        <ProductsTable>
+                            <RenderProducts/>
+                        </ProductsTable>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
         )
     }
 }
-export default Products
+
+export default connect(null,{setVisibleProducts})(Products)

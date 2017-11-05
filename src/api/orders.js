@@ -4,14 +4,15 @@ const orders = [
         "cusName" : "Vatcharapong Pothiboot",
         "email" : "vchrpng33@yahoo.com",
         "orderDate" : "September 14, 2013",
-        "amount" : "1025",
-        "country" : "Thailand",
-        "province" : "Bangkok",
-        "postcode" : "10230",
-        "city" : "buengkum" , 
-        "phone" : "029435522" ,
+        "shippingAddress" : {
+            "country" : "Thailand",
+            "province" : "Bangkok",
+            "postcode" : "10230",
+            "city" : "buengkum" , 
+            "phone" : "029435522" ,
+        },
         "payMethod" : "paypal",
-        items = [
+        "items" : [
             {
                 "title" : "Denim Jacket",
                 "category" : "jackets",

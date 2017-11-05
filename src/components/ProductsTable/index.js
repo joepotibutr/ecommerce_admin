@@ -1,11 +1,10 @@
-import React , {Component} from 'react'
+import React from 'react'
 import { Table , Segment , Button , Icon , Modal } from 'semantic-ui-react'
 import CreateProductForm from '../CreateProductForm'
-import EditProductForm from '../EditProductForm'
 
 
-class ProductsTable extends Component {
-    render(){
+const ProductsTable = ({ children }) => {
+   
     return (
         <Segment>
             <Table singleLine basic={'very'} style={{padding:'20px 20px 0 20px'}}>
@@ -19,48 +18,7 @@ class ProductsTable extends Component {
                         <Table.HeaderCell width={'3'} textAlign={'center'}>Edit</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
-                <Table.Body >
-                <Table.Row>
-                    <Table.Cell textAlign={'center'}>103887</Table.Cell>
-                    <Table.Cell>White Printed Floral Shirts</Table.Cell>
-                    <Table.Cell>T-Shirts</Table.Cell>
-                    <Table.Cell>500</Table.Cell>
-                    <Table.Cell textAlign={'center'} >2</Table.Cell>
-                    <Table.Cell textAlign={'center'} >
-                    <Modal 
-                    size={'mini'} 
-                    trigger={
-                        <Icon name={'ellipsis horizontal'}/>
-                        }>
-                    <Modal.Header content={'Edit Product'}/>
-                    <Modal.Content>
-                        <Modal.Description>
-                            <EditProductForm
-                                
-                            />
-                        </Modal.Description>
-                    </Modal.Content>
-                    </Modal>
-                    </Table.Cell>
-
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell textAlign={'center'}>103887</Table.Cell>
-                    <Table.Cell>Black Denim Jackets</Table.Cell>
-                    <Table.Cell>Jackets</Table.Cell>
-                    <Table.Cell>500</Table.Cell>
-                    <Table.Cell textAlign={'center'} >5</Table.Cell>
-                    <Table.Cell textAlign={'center'} ><Icon name={'ellipsis horizontal'}/></Table.Cell>
-                </Table.Row>
-                <Table.Row>
-                    <Table.Cell textAlign={'center'}>103887</Table.Cell>
-                    <Table.Cell>Brown Sweatshirts</Table.Cell>
-                    <Table.Cell>Sweatshirts</Table.Cell>
-                    <Table.Cell>500</Table.Cell>
-                    <Table.Cell textAlign={'center'} >4</Table.Cell>
-                    <Table.Cell textAlign={'center'} ><Icon name={'ellipsis horizontal'}/></Table.Cell>
-                </Table.Row>
-                </Table.Body>
+                    {children}
                 <Table.Footer fullWidth>
                 <Table.Row>
                     <Table.HeaderCell colSpan='6'>
@@ -84,7 +42,7 @@ class ProductsTable extends Component {
             </Table>
         </Segment>
         )
-    }
+    
 }
 
 export default ProductsTable

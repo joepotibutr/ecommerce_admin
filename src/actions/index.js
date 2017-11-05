@@ -1,6 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import users from '../api/users'
 import orders from '../api/orders'
+import products from '../api/products'
 
 
 const _addUser = user => ({
@@ -23,6 +24,11 @@ const fetchOrders = orders => ({
     orders
 })
 
+const fetchProducts = products => ({
+    type : types.FETCH_PRODUCTS , 
+    products
+})
+
 export const addUserAction = user => dispatch => {
     dispatch(_addUser(user))
 }
@@ -37,4 +43,8 @@ export const setVisibleUsers = () => dispatch => {
 
 export const setVisibleOrders = () => dispatch => {
     dispatch(fetchOrders(orders))
+}
+
+export const setVisibleProducts = () => dispatch => {
+    dispatch(fetchProducts(products))
 }

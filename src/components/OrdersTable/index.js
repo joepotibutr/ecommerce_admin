@@ -1,7 +1,7 @@
 import React from 'react'
-import { Table , Segment , Icon } from 'semantic-ui-react'
+import { Table , Segment } from 'semantic-ui-react'
 
-const OrdersTable = () => {
+const OrdersTable = ({ children }) => {
     return (
         <Segment>
         <Table singleLine basic={'very'} style={{padding:'20px 20px 0 20px'}}>
@@ -15,32 +15,9 @@ const OrdersTable = () => {
                     <Table.HeaderCell width={'3'} textAlign={'center'}>Order Detail</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
-            <Table.Body >
-            <Table.Row>
-                <Table.Cell textAlign={'center'}>3087</Table.Cell>
-                <Table.Cell>Vatcharapong Pothiboot</Table.Cell>
-                <Table.Cell>vchrpng33@yahoo.com</Table.Cell>
-                <Table.Cell>September 14, 2013</Table.Cell>
-                <Table.Cell textAlign={'center'}>1025</Table.Cell>
-                <Table.Cell textAlign={'center'} ><Icon name={'ellipsis horizontal'}/></Table.Cell>
-            </Table.Row>
-                <Table.Row>
-                <Table.Cell textAlign={'center'}>3087</Table.Cell>
-                <Table.Cell>Pakhapong Kanchanamai</Table.Cell>
-                <Table.Cell>shop@yahoo.com</Table.Cell>
-                <Table.Cell>September 14, 2013</Table.Cell>
-                <Table.Cell textAlign={'center'}>1025</Table.Cell>
-                <Table.Cell textAlign={'center'} ><Icon name={'ellipsis horizontal'}/></Table.Cell>
-            </Table.Row>
-            <Table.Row>
-                <Table.Cell textAlign={'center'}>3087</Table.Cell>
-                <Table.Cell>Tanawat Piyaprapapan</Table.Cell>
-                <Table.Cell>moss@yahoo.com</Table.Cell>
-                <Table.Cell>September 14, 2013</Table.Cell>
-                <Table.Cell textAlign={'center'}>1025</Table.Cell>
-                <Table.Cell textAlign={'center'} ><Icon name={'ellipsis horizontal'}/></Table.Cell>
-            </Table.Row>
-            </Table.Body>
+
+                {children}
+                
             <Table.Footer fullWidth>
             <Table.Row>
                 <Table.HeaderCell colSpan='6'>

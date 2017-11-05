@@ -10,8 +10,6 @@ class ManageUsers extends Component {
         this.props.setVisibleUsers()
     }
     render() {
-
-        const { users } = this.props
         return (
             <Grid>
                 <Grid.Row>
@@ -22,7 +20,7 @@ class ManageUsers extends Component {
                 <Grid.Row>
                     <Grid.Column>
                         <UsersTable>
-                            <RenderUsers users={users}/>
+                            <RenderUsers/>
                         </UsersTable>
                     </Grid.Column>
                 </Grid.Row>
