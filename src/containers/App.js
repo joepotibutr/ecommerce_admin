@@ -21,7 +21,7 @@ class App extends Component {
           <div>
             <SideNav/>
             <NotificationBar/>
-            <div style={{float:'right',width:'86%',padding:'30px 60px'}}>
+            <div style={{float:'right',width:'86%',padding:'20px 60px'}}>
             <Route exact path="/" component={LoginAdmin} />
             <Route path="/Overview" component={Overview} />
             <Route path="/products" component={Products} />

@@ -38,14 +38,14 @@ const NotificationBar = () => {
         </Menu.Item>
         <Menu.Item>
     
-        <Dropdown
-         pointing={'top right'} icon={null} trigger={avatar}>
-         <Dropdown.Menu  style={{fontSize:'14px'}} >
-          <Dropdown.Item text={'Setting'} icon={'setting'}/>
-          <Dropdown.Item text={'Sign Out'} icon={'sign out'}/>
-          
-         </Dropdown.Menu>
-         </Dropdown>
+            <Dropdown
+            pointing={'top right'} icon={null} trigger={avatar}>
+              <Dropdown.Menu  style={{fontSize:'14px',width:'150px'}} >
+                <Dropdown.Item text={'Setting'} icon={'setting'}/>
+                <Dropdown.Item text={'Sign Out'} icon={'sign out'}/>
+              
+              </Dropdown.Menu>
+          </Dropdown>
         </Menu.Item>
         <Menu.Item/>
 

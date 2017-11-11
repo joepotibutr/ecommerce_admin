@@ -20,9 +20,7 @@ const OrdersTable = ({ children }) => {
                 
             <Table.Footer fullWidth>
             <Table.Row>
-                <Table.HeaderCell colSpan='6'>
-               
-                </Table.HeaderCell>
+                <Table.HeaderCell colSpan='6'/>
             </Table.Row>
             </Table.Footer>
         </Table>

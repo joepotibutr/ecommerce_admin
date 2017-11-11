@@ -5,18 +5,18 @@ import { getVisibleProducts } from '../../reducers/products'
 import EditProductForm from '../EditProductForm'
 
 const RenderProducts = ({ products }) => {
-     const mapProducts = products.map((products,index) => 
+     const mapProducts = products.map((product,index) => 
     <Table.Row key={index}>
-        <Table.Cell textAlign={'center'}>103887</Table.Cell>
-        <Table.Cell>White Printed Floral Shirts</Table.Cell>
-        <Table.Cell>T-Shirts</Table.Cell>
-        <Table.Cell>500</Table.Cell>
+        <Table.Cell textAlign={'center'}>{product.id}</Table.Cell>
+        <Table.Cell>{product.title}</Table.Cell>
+        <Table.Cell>{product.category}</Table.Cell>
+        <Table.Cell>{product.price}</Table.Cell>
         <Table.Cell textAlign={'center'} >2</Table.Cell>
         <Table.Cell textAlign={'center'} >
         <Modal 
         size={'mini'} 
         trigger={
-            <Icon name={'ellipsis horizontal'}/>
+            <Icon name={'edit'}/>
             }>
         <Modal.Header content={'Edit Product'}/>
         <Modal.Content>

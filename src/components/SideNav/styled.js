@@ -5,7 +5,7 @@ export const Sidebar = styled.div`
     float:left;
     width:200px;
     
-    background-color:#333;
+    background-color:#1b1c1d;
     top:71px;
     left:0;
     bottom:0;

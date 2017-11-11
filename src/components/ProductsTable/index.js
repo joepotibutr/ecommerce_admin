@@ -1,6 +1,6 @@
 import React from 'react'
-import { Table , Segment , Button , Icon , Modal } from 'semantic-ui-react'
-import CreateProductForm from '../CreateProductForm'
+import { Table , Segment } from 'semantic-ui-react'
+
 
 
 const ProductsTable = ({ children }) => {
@@ -21,22 +21,7 @@ const ProductsTable = ({ children }) => {
                     {children}
                 <Table.Footer fullWidth>
                 <Table.Row>
-                    <Table.HeaderCell colSpan='6'>
-                    <Modal 
-                    size={'mini'}
-                    trigger={<Button floated='right' icon labelPosition='left' size='small'>
-                            <Icon name='add'/> New Product
-                         </Button>}>
-                        <Modal.Header content={'New Product'}/>
-                        <Modal.Content>
-                            <Modal.Description>
-                                <CreateProductForm
-                                   
-                                />
-                            </Modal.Description>
-                        </Modal.Content>
-                    </Modal> 
-                    </Table.HeaderCell>
+                    <Table.HeaderCell colSpan='6'/>
                 </Table.Row>
                 </Table.Footer>
             </Table>
