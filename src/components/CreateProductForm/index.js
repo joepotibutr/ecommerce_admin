@@ -18,9 +18,7 @@ class CreateProductForm extends Component {
                 price : 0,
                 color : '',
                 thumbnial : '',
-                images : [
-
-                ],
+                images : [],
                 inventory : {
                     S : 0,
                     M : 0,
@@ -38,9 +36,23 @@ class CreateProductForm extends Component {
         })
     }
 
+    inventoryOnChange = e => {
+        this.setState({
+            data : {
+                ...this.state.data,
+                inventory : {
+                    ...this.state.data.inventory,[e.target.name] : e.target.value
+                }
+            }
+        })
+    }
+
     categoryOnChange = (e,data) => {
         this.setState({
-            category : data.value
+           data : {
+                ...this.state.data,
+                category : data.value
+           }
         })
     }
 
@@ -52,6 +64,7 @@ class CreateProductForm extends Component {
 
       submit = (images) => {
         this.setState({isLoading : true})
+        
          const upload = images.map(image => {
             const data = new FormData()
             data.append('file',image)
@@ -64,11 +77,13 @@ class CreateProductForm extends Component {
                 console.log(fileUrl)
                 this.setState({ 
                     data : {
+                        ...this.state.data,
                         images : [...this.state.data.images,fileUrl]
                     }
                 })
-            }).then(res => console.log(this.state.data))
-            .then(res =>  this.setState({ isLoading : false }) )
+            }).then(res => this.props.submit(this.state.data)
+            .catch(err =>  this.setState({ isLoading : false })))
+           
          })
         axios.all(upload).then((res) => console.log('axios.all'))
       }
@@ -83,10 +98,20 @@ class CreateProductForm extends Component {
             >
             <Form.Group>
                 <Form.Field width={12}>
-                    <Form.Input label={'Product Name'} type="text"/>
+                    <Form.Input 
+                    name='title' 
+                    label={'Product Name'} 
+                    type="text"
+                    onChange={this.onChange}
+                />
                 </Form.Field>
                 <Form.Field width={4}>
-                    <Form.Input label={'ID'} type="text"/>
+                    <Form.Input 
+                    name='id' 
+                    label={'ID'} 
+                    type="text"
+                    onChange={this.onChange}
+                />
                 </Form.Field>
             </Form.Group>
                 <Form.Field>
@@ -96,14 +121,28 @@ class CreateProductForm extends Component {
                     />
                 </Form.Field>
                 <Form.Field>
-                    <Form.TextArea label='Description' />
+                    <Form.TextArea 
+                        name='description' 
+                        label='Description' 
+                        onChange={this.onChange}
+                    />
                 </Form.Field>
                 <Form.Group>
                 <Form.Field width={8}>
-                    <Form.Input label={'Price'} type="number" />
+                    <Form.Input 
+                        name='price' 
+                        label={'Price'} 
+                        type="number" 
+                        onChange={this.onChange}
+                    />
                 </Form.Field>
                 <Form.Field width={8}>
-                    <Form.Input label={'Color'} type="string" />
+                    <Form.Input 
+                        name='color' 
+                        label={'Color'} 
+                        type="string" 
+                        onChange={this.onChange}
+                    />
                 </Form.Field>
                 </Form.Group>
              
@@ -113,22 +152,43 @@ class CreateProductForm extends Component {
                     
                 <Form.Group>
                     <Form.Field width={'8'}>
-                     <Input fluid label={{ basic: true, content: 'S ' }}
-                    labelPosition='left' type="number" />
+                     <Input
+                        name='S'
+                        fluid label={{ basic: true, content: 'S ' }}
+                        labelPosition='left' 
+                        type="number"
+                        onChange={this.inventoryOnChange} 
+                        
+                    />
                     </Form.Field>
                     <Form.Field width={'8'}>
-                    <Input fluid label={{ basic: true, content: 'M ' }}
-                    labelPosition='left' type="number" />
+                    <Input 
+                        name='M'
+                        fluid label={{ basic: true, content: 'M ' }}
+                        labelPosition='left' 
+                        type="number" 
+                        onChange={this.inventoryOnChange} 
+                    />
                     </Form.Field>
                 </Form.Group>
                 <Form.Group>
                     <Form.Field width={'8'}>
-                    <Input fluid label={{ basic: true, content: 'L ' }}
-                    labelPosition='left' type="number" />
+                    <Input
+                        name='L' 
+                        fluid label={{ basic: true, content: 'L ' }}
+                        labelPosition='left' 
+                        type="number" 
+                        onChange={this.inventoryOnChange} 
+                    />
                    </Form.Field>
                    <Form.Field width={'8'}>
-                   <Input fluid label={{ basic: true, content: 'XL' }}
-                   labelPosition='left' type="number" />
+                   <Input 
+                        name='XL'
+                        fluid label={{ basic: true, content: 'XL' }}
+                        labelPosition='left' 
+                        type="number" 
+                        onChange={this.inventoryOnChange} 
+                    />
                    </Form.Field>
                 </Form.Group>
                     <Form.Field>

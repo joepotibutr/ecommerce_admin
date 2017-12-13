@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS } from '../constants/ActionTypes'
+import { FETCH_PRODUCTS , CREATE_PRODUCT_SUCCESS } from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
 
 const getProductId = (state = [], action) => {
@@ -22,6 +22,14 @@ const fetchProductsById = (state = {} , action ) => {
               }
         default : return state
     }    
+}
+
+const createProduct = (state,action) => {
+    switch(action.type){
+        case CREATE_PRODUCT_SUCCESS :
+            return {}
+        default : return {}
+    }
 }
 
 export default combineReducers({ 

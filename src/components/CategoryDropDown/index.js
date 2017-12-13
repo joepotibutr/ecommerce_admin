@@ -14,6 +14,8 @@ class CategoryDropDown extends Component {
         const handleChange = e => this.props.valueOnChange(e.target.value)
         return (
             <Select
+            onChange={this.props.valueOnChange}
+            name='category'
             placeholder={'Select Category'}
             options={category}
          />

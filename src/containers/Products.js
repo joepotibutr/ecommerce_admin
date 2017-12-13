@@ -5,6 +5,7 @@ import RenderProducts from '../components/RenderProducts'
 import { setVisibleProducts } from '../actions'
 import { connect } from 'react-redux'
 import CreateProductForm from '../components/CreateProductForm'
+import { createProduct } from '../actions'
 
 class Products extends Component {
     
@@ -12,6 +13,8 @@ class Products extends Component {
         this.props.setVisibleProducts()
     }
     
+    submit = data => this.props.createProduct(data).then(() => this.props.history.push('/products'))
+
     render() {
         return (
             <Grid>
@@ -29,7 +32,7 @@ class Products extends Component {
                         <Modal.Content>
                             <Modal.Description>
                                 <CreateProductForm
-                                   
+                                   submit={this.submit}
                                 />
                             </Modal.Description>
                         </Modal.Content>
@@ -48,4 +51,4 @@ class Products extends Component {
     }
 }
 
-export default connect(null,{setVisibleProducts})(Products)
+export default connect(null,{setVisibleProducts,createProduct})(Products)

@@ -52,3 +52,6 @@ export const setVisibleProducts = () => dispatch => {
         dispatch(fetchProducts(res.data))
         })
 }
+
+export const createProduct = data => dispatch => axios.post('/api/products',data).then(
+    res => dispatch({ type : types.CREATE_PRODUCT_SUCCESS }))
