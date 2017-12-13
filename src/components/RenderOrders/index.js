@@ -7,18 +7,20 @@ import OrderDetail from '../OrderDetail'
 const RenderOrders = ({ orders }) => {
     const mapOrders = orders.map((order,index) => 
         <Table.Row key={index}>
-        <Table.Cell textAlign={'center'}>{order.id}</Table.Cell>
-        <Table.Cell>{order.cusName}</Table.Cell>
+        <Table.Cell textAlign={'center'}>{index + 1}</Table.Cell>
+        <Table.Cell>{order.fullname}</Table.Cell>
         <Table.Cell>{order.email}</Table.Cell>
-        <Table.Cell>{order.orderDate}</Table.Cell>
-        <Table.Cell textAlign={'center'}>{order.orderTotal}</Table.Cell>
+        <Table.Cell>{order.createdAt}</Table.Cell>
+        <Table.Cell textAlign={'center'}>{order.total}</Table.Cell>
         <Table.Cell textAlign={'center'} >
 
         <Modal size={'tiny'} trigger={<Icon name={'ellipsis horizontal'}/>}>
             <Modal.Header>Order Detail</Modal.Header>
             <Modal.Content>
                 <Modal.Description>
-                    <OrderDetail/>
+                    <OrderDetail
+                        detail={order}
+                    />
                 </Modal.Description>
             </Modal.Content>
         </Modal>

@@ -11,7 +11,7 @@ const RenderProducts = ({ products }) => {
         <Table.Cell>{product.title}</Table.Cell>
         <Table.Cell>{product.category}</Table.Cell>
         <Table.Cell>{product.price}</Table.Cell>
-        <Table.Cell textAlign={'center'} >2</Table.Cell>
+        <Table.Cell textAlign={'center'} ><Icon name='window restore'/></Table.Cell>
         <Table.Cell textAlign={'center'} >
         <Modal 
         size={'mini'} 

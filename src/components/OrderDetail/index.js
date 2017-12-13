@@ -1,10 +1,27 @@
 import React from 'react'
 import { Grid , Segment } from 'semantic-ui-react'
 
-const OrderDetail = () => {
+const OrderDetail = ({ detail }) => {
+
+    const mapOrderItems = detail.items.map((item,idx) => 
+        <Grid.Row columns={'2'} style={{padding:'0 20px'}} key={idx}>
+            <Grid.Column>
+                {item.title}
+                <br/>
+                {item.category}
+                <br/>
+               size : {item.size}
+            </Grid.Column>
+            <Grid.Column textAlign={'right'}>
+            $ {item.price}
+            </Grid.Column>
+                <hr style={{width:'94%'}}/>
+        </Grid.Row>
+    )
+
     return (
         <Grid>
-            <Grid.Row><Grid.Column>Order #1231231312</Grid.Column></Grid.Row>
+            <Grid.Row><Grid.Column>ID : {detail._id}</Grid.Column></Grid.Row>
             <Grid.Row>
                 <Grid.Column>
                     <Segment>
@@ -18,9 +35,9 @@ const OrderDetail = () => {
                             </Grid.Column>
                             <Grid.Column>
                                     <br/>
-                                Vatcharapong Pothiboot <br/>
-                                vchrpng@gmail.com <br/>
-                                084338374 <br/>
+                               {detail.fullname} <br/>
+                                {detail.email} <br/>
+                               {detail.phone} <br/>
                             </Grid.Column>
                             </Grid.Row>
                         </Grid>
@@ -34,15 +51,17 @@ const OrderDetail = () => {
                    <Grid.Row columns={'2'}>
                    <Grid.Column>
                    <strong>  Shipping Address  </strong> <br/>
+                        City <br/>
                        Country <br/>
                        Province <br/>
-                       Phone <br/>
+                       Postcode <br/>
                    </Grid.Column>
                    <Grid.Column>
-                           <br/>
-                       Thailand <br/>
-                       Bangkok <br/>
-                       084338374 <br/>
+                       <br/>
+                          {detail.city} <br/>
+                       {detail.country} <br/>
+                       {detail.province} <br/>
+                       {detail.postcode} <br/>
                    </Grid.Column>
                    </Grid.Row>
                </Grid>
@@ -55,19 +74,10 @@ const OrderDetail = () => {
                 </Grid.Column>
             </Grid.Row>
             <hr style={{width:'82%'}}/>
-            <Grid.Row columns={'2'} style={{padding:'0 20px'}}>
-                <Grid.Column>
-                    Denim Jacket
-                    <br/>
-                    Jackets
-                    <br/>
-                    M
-                </Grid.Column>
-                <Grid.Column textAlign={'right'}>
-                    $ 350
-                </Grid.Column>
-                <hr style={{width:'94%'}}/>
-            </Grid.Row>
+            
+                {mapOrderItems}
+         
+            
             <Grid.Row columns={'2'} style={{padding:'0 20px 20px 20px'}}>
                 <Grid.Column>
                     Subtotal

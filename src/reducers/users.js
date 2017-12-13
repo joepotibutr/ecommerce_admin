@@ -9,9 +9,7 @@ const initialState = {
 const fetchUsers = (state = [],action) => {
     switch(action.type) {
         case FETCH_USERS : 
-            return [
-                ...action.users
-            ]
+            return [...action.users]
         default : 
             return state
     }

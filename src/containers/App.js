@@ -22,7 +22,7 @@ class App extends Component {
     }
   }
     render() {
-      if(this.state.isLoggedIn)
+      if(!this.state.isLoggedIn)
       return (
         <Router>
           <div style={{backgroundColor: 'gainsboro'}}>

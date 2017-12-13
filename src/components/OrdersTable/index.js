@@ -11,7 +11,7 @@ const OrdersTable = ({ children }) => {
                     <Table.HeaderCell width={'3'}>Customer Name</Table.HeaderCell>
                     <Table.HeaderCell width={'3'}>Email</Table.HeaderCell>
                     <Table.HeaderCell width={'3'}>Order Date</Table.HeaderCell>
-                    <Table.HeaderCell width={'2'} textAlign={'center'}>Amount</Table.HeaderCell>
+                    <Table.HeaderCell width={'2'} textAlign={'center'}>Total</Table.HeaderCell>
                     <Table.HeaderCell width={'3'} textAlign={'center'}>Order Detail</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>

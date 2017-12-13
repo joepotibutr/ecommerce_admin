@@ -1,7 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import users from '../api/users'
-import orders from '../api/orders'
-import products from '../api/products'
+import axios from 'axios'
 
 
 const _addUser = user => ({
@@ -38,13 +36,19 @@ export const removeUserAction = index => dispatch => {
 }
 
 export const setVisibleUsers = () => dispatch => {
-    dispatch(fetchUsers(users))
+    axios.get('/api/users').then((res) => { 
+        dispatch(fetchUsers(res.data))
+    })
 }
 
 export const setVisibleOrders = () => dispatch => {
-    dispatch(fetchOrders(orders))
+    axios.get('/api/orders').then((res) => { 
+        dispatch(fetchOrders(res.data))
+    })
 }
 
 export const setVisibleProducts = () => dispatch => {
-    dispatch(fetchProducts(products))
+    axios.get('/api/products').then((res) => {
+        dispatch(fetchProducts(res.data))
+        })
 }

@@ -14,7 +14,7 @@ const ProductsTable = ({ children }) => {
                         <Table.HeaderCell width={'4'}>Product Name</Table.HeaderCell>
                         <Table.HeaderCell width={'3'}>Category</Table.HeaderCell>
                         <Table.HeaderCell width={'2'}>Price</Table.HeaderCell>
-                        <Table.HeaderCell width={'2'} textAlign={'center'} >Quantity Unit</Table.HeaderCell>
+                        <Table.HeaderCell width={'2'} textAlign={'center'} >Preview</Table.HeaderCell>
                         <Table.HeaderCell width={'3'} textAlign={'center'}>Edit</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

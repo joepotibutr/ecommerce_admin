@@ -4,9 +4,7 @@ import { combineReducers } from 'redux'
 const fetchOrders = (state = [],action) => {
     switch(action.type){
         case FETCH_ORDERS :
-            return [
-                ...action.orders
-            ]
+            return [...action.orders]
         default : return state
     }
 }

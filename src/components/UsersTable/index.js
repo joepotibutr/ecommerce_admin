@@ -17,7 +17,7 @@ const UsersTable = ({ users , children }) => {
                     </Table.Row>
                 </Table.Header>
               
-                    {children}
+                    {/* {children} */}
                
                 <Table.Footer fullWidth>
                 <Table.Row>
