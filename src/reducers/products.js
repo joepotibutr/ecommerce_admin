@@ -34,7 +34,8 @@ const createProduct = (state,action) => {
 
 export default combineReducers({ 
     fetchProductsById , 
-    getProductId  
+    getProductId ,
+    createProduct 
 })
 
 export const getProducts = (state,id) => 

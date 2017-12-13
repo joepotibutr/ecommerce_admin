@@ -9,6 +9,7 @@ class CreateProductForm extends Component {
     constructor(props){
         super(props)
         this.state = {
+            thumbnial : [],
             images : [],
             isLoading : false,
             data : {
@@ -17,7 +18,7 @@ class CreateProductForm extends Component {
                 category : '',
                 price : 0,
                 color : '',
-                thumbnial : '',
+                thumbnail : '',
                 images : [],
                 inventory : {
                     S : 0,
@@ -35,6 +36,25 @@ class CreateProductForm extends Component {
             images
         })
     }
+    
+    onThumbnialChange(thumbnial) {
+        this.setState({isLoading : true})
+        const upload = thumbnial.map(img => {
+            const data = new FormData()
+            data.append('file',img)
+            data.append('upload_preset','dxdnjizh')
+            data.append('api_key','653988778996542')
+            data.append('timestamp',Date.now()/1000)
+            return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
+            .then(res => {
+                this.setState({ data : {
+                    ...this.state.data,
+                    thumbnail : res.data.secure_url
+                }})})
+            .then(res => this.setState({ isLoading : false }))
+            .catch(err =>  this.setState({ isLoading : false }))
+            })
+    } 
 
     inventoryOnChange = e => {
         this.setState({
@@ -71,6 +91,7 @@ class CreateProductForm extends Component {
             data.append('upload_preset','dxdnjizh')
             data.append('api_key','653988778996542')
             data.append('timestamp',Date.now()/1000)
+            console.log(data)
            return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
             .then(res => {
                 const fileUrl = res.data.secure_url
@@ -81,7 +102,9 @@ class CreateProductForm extends Component {
                         images : [...this.state.data.images,fileUrl]
                     }
                 })
-            }).then(res => this.props.submit(this.state.data)
+            })
+            .then(res => this.props.submit(this.state.data)
+            .then(res =>  this.setState({ isLoading : false }))
             .catch(err =>  this.setState({ isLoading : false })))
            
          })
@@ -89,10 +112,10 @@ class CreateProductForm extends Component {
       }
 
     render() {
-        const { images , isLoading , data } = this.state
+        const { images , isLoading , data , thumbnial } = this.state
         return (
             <Form 
-                onSubmit={() => this.submit(images)} 
+                onSubmit={() => this.submit(images,thumbnial)} 
                 size='small' 
                 loading={isLoading}
             >
@@ -191,19 +214,41 @@ class CreateProductForm extends Component {
                     />
                    </Form.Field>
                 </Form.Group>
-                    <Form.Field>
-                        <label>Product Images Upload</label>
-                        <br/>
+                <h4>Product Images Upload</h4>
+                <Form.Group>
+                    <Form.Field width={8}>
+                        <Dropzone 
+                            onDrop={this.onThumbnialChange.bind(this)}
+                            style={{
+                                display:'flex',
+                                justifyContent:'center',
+                                alignItems:'center',
+                                height: '100px',
+                                borderWidth: '2px',
+                                borderColor: 'rgb(102, 102, 102)',
+                                borderStyle: 'solid',
+                                borderRadius: '5px'}}
+                        >
+                        <span>Product Thumbnial</span>
+                        </Dropzone>
+                    </Form.Field>
+                    <Form.Field width={8}>
                         <Dropzone 
                             onDrop={this.onDrop.bind(this)}
-                            style={{width: '100%',
+                            style={{
+                                display:'flex',
+                                justifyContent:'center',
+                                alignItems:'center',
                                 height: '100px',
                                 borderWidth: '2px',
                                 borderColor: 'rgb(102, 102, 102)',
                                 borderStyle: 'dashed',
                                 borderRadius: '5px'}}
-                            />
+                        >
+                        <span>More Product Images</span>
+                        </Dropzone>
                     </Form.Field>
+                </Form.Group>
                     <Form.Field>
                         <List>
                             {images.map((image,idx) => 
@@ -222,7 +267,8 @@ class CreateProductForm extends Component {
                         </List>
                     </Form.Field>
                     <Form.Field>
-                        <Form.Button 
+                        <Form.Button
+                        color='red' 
                         fluid content={'Add'} />
                     </Form.Field>
             </Form>
