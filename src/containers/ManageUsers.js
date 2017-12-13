@@ -4,6 +4,7 @@ import UsersTable from '../components/UsersTable'
 import RenderUsers from '../components/RenderUsers'
 import { connect } from 'react-redux'
 import { setVisibleUsers } from '../actions'
+import UserDetail from '../components/UserDetail'
 
 class ManageUsers extends Component {
     componentWillMount(){
@@ -25,7 +26,7 @@ class ManageUsers extends Component {
                         <Modal.Header content={'New User'}/>
                         <Modal.Content>
                             <Modal.Description>
-                               eiei
+                               <UserDetail />
                             </Modal.Description>
                         </Modal.Content>
                     </Modal> 

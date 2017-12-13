@@ -5,10 +5,10 @@ import { getVisibleUsers } from '../../reducers/users'
 
 const RenderUsers = ({ users }) => {
     const mapUsers = users.map((user,index) => 
-        <Table.Row key={user.id}>
-          <Table.Cell textAlign={'center'} >{user.id}</Table.Cell>
+        <Table.Row key={index}>
+          <Table.Cell textAlign={'center'} >{index + 1}</Table.Cell>
           <Table.Cell >{user.email}</Table.Cell>
-          <Table.Cell>{user.createAt}</Table.Cell>
+          <Table.Cell>{user.createdAt}</Table.Cell>
           <Table.Cell textAlign={'center'}>{user.type}</Table.Cell>
           <Table.Cell textAlign={'center'} ><Icon name={'x'}/></Table.Cell>
       </Table.Row>
