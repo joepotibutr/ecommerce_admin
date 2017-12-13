@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 export const Sidebar = styled.div`
-    position:fixed;
+    position:absolute;
     float:left;
     width:200px;
-    
+    height:2000px;
     background-color:#1b1c1d;
     top:71px;
     left:0;

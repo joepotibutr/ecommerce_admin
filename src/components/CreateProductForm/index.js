@@ -2,53 +2,101 @@ import React, { Component } from 'react'
 import { Form , List , Input } from 'semantic-ui-react'
 import CategoryDropDown from '../CategoryDropDown'
 import Dropzone from 'react-dropzone'
-// import superagent from 'superagent'
 import axios from 'axios'
-import sha1 from 'sha1'
 
 
 class CreateProductForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            images : []
+            images : [],
+            isLoading : false,
+            data : {
+                id : '',
+                title : '',
+                category : '',
+                price : 0,
+                color : '',
+                thumbnial : '',
+                images : [
+
+                ],
+                inventory : {
+                    S : 0,
+                    M : 0,
+                    L : 0,
+                    XL : 0
+                },
+                description : ''
+            }
         }
     }
     
-      onDrop(images) {
+    onDrop(images) {
         this.setState({
             images
         })
-      }
+    }
+
+    categoryOnChange = (e,data) => {
+        this.setState({
+            category : data.value
+        })
+    }
+
+    onChange = e => {
+        this.setState({ 
+            data : { ...this.state.data,[e.target.name] : e.target.value }
+        })
+    }
 
       submit = (images) => {
-
+        this.setState({isLoading : true})
          const upload = images.map(image => {
             const data = new FormData()
             data.append('file',image)
             data.append('upload_preset','dxdnjizh')
             data.append('api_key','653988778996542')
             data.append('timestamp',Date.now()/1000)
-            data.append
            return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
             .then(res => {
-                const data = res.data
-                const fileUrl = data.secure_url
-                console.log(data)
-            })
+                const fileUrl = res.data.secure_url
+                console.log(fileUrl)
+                this.setState({ 
+                    data : {
+                        images : [...this.state.data.images,fileUrl]
+                    }
+                })
+            }).then(res => console.log(this.state.data))
+            .then(res =>  this.setState({ isLoading : false }) )
          })
-        axios.all(upload).then((res) => console.log(res))
+        axios.all(upload).then((res) => console.log('axios.all'))
       }
 
     render() {
+        const { images , isLoading , data } = this.state
         return (
-            <Form onSubmit={this.submit(this.state.images)} >
-                <Form.Field>
+            <Form 
+                onSubmit={() => this.submit(images)} 
+                size='small' 
+                loading={isLoading}
+            >
+            <Form.Group>
+                <Form.Field width={12}>
                     <Form.Input label={'Product Name'} type="text"/>
                 </Form.Field>
+                <Form.Field width={4}>
+                    <Form.Input label={'ID'} type="text"/>
+                </Form.Field>
+            </Form.Group>
                 <Form.Field>
                     <label>Category</label>
-                    <CategoryDropDown/>
+                    <CategoryDropDown
+                        valueOnChange={this.categoryOnChange}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Form.TextArea label='Description' />
                 </Form.Field>
                 <Form.Group>
                 <Form.Field width={8}>
@@ -98,7 +146,7 @@ class CreateProductForm extends Component {
                     </Form.Field>
                     <Form.Field>
                         <List>
-                            {this.state.images.map((image,idx) => 
+                            {images.map((image,idx) => 
                                 <List.Item 
                                     style={{overflow:'hidden'}} 
                                     key={idx}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {Component} from 'react'
 import { Select } from 'semantic-ui-react'
 
 const category = [
@@ -9,13 +9,16 @@ const category = [
     { key : 'shirts' , value : 'shirts' , text : 'Shirts' }
 ]
 
-const CategoryDropDown = () => {
-    return (
-        <Select
+class CategoryDropDown extends Component {
+    render() {
+        const handleChange = e => this.props.valueOnChange(e.target.value)
+        return (
+            <Select
             placeholder={'Select Category'}
             options={category}
          />
-    )
+        )}
 }
+
 
 export default CategoryDropDown
