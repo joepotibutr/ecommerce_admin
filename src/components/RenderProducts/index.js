@@ -1,10 +1,18 @@
 import React from 'react'
-import { Table , Icon , Modal } from 'semantic-ui-react'
+import { Table , Icon , Modal , Confirm } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { getVisibleProducts } from '../../reducers/products'
 import EditProductForm from '../EditProductForm'
 
-const RenderProducts = ({ products , submit , del }) => {
+class RenderProducts extends React.Component{
+    state = { open: false }
+    
+      show = () => this.setState({ open: true })
+   
+      handleCancel = () => this.setState({ open: false })
+
+     render(){
+       const { products , submit , del } = this.props  
      const mapProducts = products.map((product,index) => 
     <Table.Row key={index}>
         <Table.Cell textAlign={'center'}>{product.id}</Table.Cell>
@@ -22,12 +30,29 @@ const RenderProducts = ({ products , submit , del }) => {
             <Modal.Description>
                 <EditProductForm
                     submit={submit}
+                    product={product}
                 />
             </Modal.Description>
         </Modal.Content>
         </Modal>
         </Table.Cell>
-        <Table.Cell textAlign={'center'} ><Icon name='delete'/></Table.Cell>
+        <Table.Cell textAlign={'center'}>
+            <Icon 
+                style={{cursor:'pointer'}}
+                onClick={this.show}
+                name='delete'
+            />
+             <Confirm
+                header='Delete Product'
+                open={this.state.open}
+                content='Are you sure ?'
+                onCancel={this.handleCancel}
+                onConfirm={() => { 
+                    this.setState({ open : false })
+                    return del({id : product.id })
+                }}
+        />
+        </Table.Cell>
     </Table.Row>
 )
 
@@ -35,7 +60,8 @@ const RenderProducts = ({ products , submit , del }) => {
         <Table.Body>
             {mapProducts}
         </Table.Body>
-    )
+        )
+    }
 }
 
 const mapStateToProps = state => ({

@@ -86,16 +86,16 @@ const OrderDetail = ({ detail }) => {
                     <br/>
                     Duties and taxes
                     <br/>
-                    Order total
+                   <h4 style={{marginTop:'13px'}}> Order total </h4>
                 </Grid.Column>
                 <Grid.Column textAlign={'right'}>
-                    $ 1050
+                    $ {detail.total}
                     <br/>
                     $ 0.00
                     <br/>
                     included
                     <br/>
-                    $ 1050
+                 <h3 style={{marginTop:'10px'}}> $ {detail.total} </h3>
                 </Grid.Column>
             </Grid.Row>
         </Grid>

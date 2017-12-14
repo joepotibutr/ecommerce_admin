@@ -9,7 +9,6 @@ import Products from './Products'
 import ManageUsers from './ManageUsers'
 import Orders from './Orders'
 import SideNav from '../components/SideNav'
-// import Footer from '../components/Footer'
 import NotificationBar from '../components/NotificationBar'
 
 

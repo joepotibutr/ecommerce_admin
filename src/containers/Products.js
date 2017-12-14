@@ -12,7 +12,7 @@ class Products extends Component {
     componentDidMount() {
         this.props.setVisibleProducts()
     }
-    del = data => this.props.deleteProduct(data).then(() => this.props.history.push('/products'))
+    del = id => this.props.deleteProduct(id).then(() => this.props.history.push('/products'))
     edit = data => this.props.editProduct(data).then(() => this.props.history.push('/products'))
     submit = data => this.props.createProduct(data).then(() => this.props.history.push('/products'))
 

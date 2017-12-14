@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import { Form , List , Input } from 'semantic-ui-react'
+import { Form , Input } from 'semantic-ui-react'
 import CategoryDropDown from '../CategoryDropDown'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
+
 
 
 class EditProductForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            thumbnail : [],
-            images : [],
             isLoading : false,
             data : {
                 id : '',
@@ -30,16 +29,10 @@ class EditProductForm extends Component {
             }
         }
     }
-    
-    onDrop(images) {
-        this.setState({
-            images
-        })
-    }
-    
-    onThumbnailChange(thumbnail) {
+
+    onThumbnialChange(thumbnial) {
         this.setState({isLoading : true})
-        thumbnail.map(img => {
+        thumbnial.map(img => {
             const data = new FormData()
             data.append('file',img)
             data.append('upload_preset','dxdnjizh')
@@ -55,6 +48,33 @@ class EditProductForm extends Component {
             .catch(err =>  this.setState({ isLoading : false }))
             })
     } 
+
+    onProductImagesChange(images) {
+        this.setState({isLoading : true})
+        
+            images.map(image => {
+            const data = new FormData()
+            data.append('file',image)
+            data.append('upload_preset','dxdnjizh')
+            data.append('api_key','653988778996542')
+            data.append('timestamp',Date.now()/1000)
+            console.log(data)
+           return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
+            .then(res => {
+                const fileUrl = res.data.secure_url
+                console.log(fileUrl)
+                this.setState({ 
+                    data : {
+                        ...this.state.data,
+                        images : [...this.state.data.images,fileUrl]
+                    }
+                })
+            })
+            .then(res => this.setState({ isLoading : false }))
+            .catch(err =>  this.setState({ isLoading : false }))
+
+        })
+    }
 
     inventoryOnChange = e => {
         this.setState({
@@ -82,41 +102,18 @@ class EditProductForm extends Component {
         })
     }
 
-      submit = (images) => {
-        this.setState({isLoading : true})
-        
-         const upload = images.map(image => {
-            const data = new FormData()
-            data.append('file',image)
-            data.append('upload_preset','dxdnjizh')
-            data.append('api_key','653988778996542')
-            data.append('timestamp',Date.now()/1000)
-            console.log(data)
-           return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
-            .then(res => {
-                const fileUrl = res.data.secure_url
-                console.log(fileUrl)
-                this.setState({ 
-                    data : {
-                        ...this.state.data,
-                        images : [...this.state.data.images,fileUrl]
-                    }
-                })
-            })
-            .then(res => console.log('upload success'))
-            .then(res => this.props.submit(this.state.data)
+      submit = data => {
+            this.setState({isLoading : true})
+            return this.props.submit(data)
             .then(res =>  this.setState({ isLoading : false }))
-            .catch(err =>  this.setState({ isLoading : false })))
-           
-         })
-        axios.all(upload).then((res) => console.log('axios.all'))
+            .catch(err =>  this.setState({ isLoading : false }))
       }
 
     render() {
-        const { images , isLoading , thumbnail } = this.state
+        const { isLoading } = this.state
         return (
             <Form 
-                onSubmit={() => this.submit(images,thumbnail)} 
+                onSubmit={() => this.submit(this.state.data)} 
                 size='small' 
                 loading={isLoading}
             >
@@ -219,7 +216,7 @@ class EditProductForm extends Component {
                 <Form.Group>
                     <Form.Field width={8}>
                         <Dropzone 
-                            onDrop={this.onThumbnailChange.bind(this)}
+                            onDrop={this.onThumbnialChange.bind(this)}
                             style={{
                                 display:'flex',
                                 justifyContent:'center',
@@ -230,12 +227,12 @@ class EditProductForm extends Component {
                                 borderStyle: 'solid',
                                 borderRadius: '5px'}}
                         >
-                        <span>Product thumbnail</span>
+                        <span>Product Thumbnial</span>
                         </Dropzone>
                     </Form.Field>
                     <Form.Field width={8}>
                         <Dropzone 
-                            onDrop={this.onDrop.bind(this)}
+                            onDrop={this.onProductImagesChange.bind(this)}
                             style={{
                                 display:'flex',
                                 justifyContent:'center',
@@ -251,26 +248,9 @@ class EditProductForm extends Component {
                     </Form.Field>
                 </Form.Group>
                     <Form.Field>
-                        <List>
-                            {images.map((image,idx) => 
-                                <List.Item 
-                                    style={{overflow:'hidden'}} 
-                                    key={idx}
-                                >
-                                <div>
-                                    <div style={{width:'92%',overflow:'hidden'}}>
-                                    <p> {image.name} </p></div>
-                                    <List.Icon name={'x'}
-                                        style={{position:'relative',top:'-18px',left:'304px'}}
-                                    />
-                                </div>
-                                </List.Item>)}
-                        </List>
-                    </Form.Field>
-                    <Form.Field>
                         <Form.Button
                         color='red' 
-                        fluid content={'Save'} />
+                        fluid content={'Add'} />
                     </Form.Field>
             </Form>
         )
