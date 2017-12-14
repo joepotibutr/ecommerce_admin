@@ -11,7 +11,6 @@ const category = [
 
 class CategoryDropDown extends Component {
     render() {
-        const handleChange = e => this.props.valueOnChange(e.target.value)
         return (
             <Select
             onChange={this.props.valueOnChange}

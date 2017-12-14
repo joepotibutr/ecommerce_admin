@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form , List , Input } from 'semantic-ui-react'
+import { Form , Input } from 'semantic-ui-react'
 import CategoryDropDown from '../CategoryDropDown'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
@@ -9,8 +9,6 @@ class CreateProductForm extends Component {
     constructor(props){
         super(props)
         this.state = {
-            thumbnial : [],
-            images : [],
             isLoading : false,
             data : {
                 id : '',
@@ -30,16 +28,10 @@ class CreateProductForm extends Component {
             }
         }
     }
-    
-    onDrop(images) {
-        this.setState({
-            images
-        })
-    }
-    
+
     onThumbnialChange(thumbnial) {
         this.setState({isLoading : true})
-        const upload = thumbnial.map(img => {
+        thumbnial.map(img => {
             const data = new FormData()
             data.append('file',img)
             data.append('upload_preset','dxdnjizh')
@@ -55,6 +47,33 @@ class CreateProductForm extends Component {
             .catch(err =>  this.setState({ isLoading : false }))
             })
     } 
+
+    onProductImagesChange(images) {
+        this.setState({isLoading : true})
+        
+            images.map(image => {
+            const data = new FormData()
+            data.append('file',image)
+            data.append('upload_preset','dxdnjizh')
+            data.append('api_key','653988778996542')
+            data.append('timestamp',Date.now()/1000)
+            console.log(data)
+           return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
+            .then(res => {
+                const fileUrl = res.data.secure_url
+                console.log(fileUrl)
+                this.setState({ 
+                    data : {
+                        ...this.state.data,
+                        images : [...this.state.data.images,fileUrl]
+                    }
+                })
+            })
+            .then(res => this.setState({ isLoading : false }))
+            .catch(err =>  this.setState({ isLoading : false }))
+
+        })
+    }
 
     inventoryOnChange = e => {
         this.setState({
@@ -82,40 +101,18 @@ class CreateProductForm extends Component {
         })
     }
 
-      submit = (images) => {
-        this.setState({isLoading : true})
-        
-         const upload = images.map(image => {
-            const data = new FormData()
-            data.append('file',image)
-            data.append('upload_preset','dxdnjizh')
-            data.append('api_key','653988778996542')
-            data.append('timestamp',Date.now()/1000)
-            console.log(data)
-           return axios.post('https://api.cloudinary.com/v1_1/josphr/image/upload',data)
-            .then(res => {
-                const fileUrl = res.data.secure_url
-                console.log(fileUrl)
-                this.setState({ 
-                    data : {
-                        ...this.state.data,
-                        images : [...this.state.data.images,fileUrl]
-                    }
-                })
-            })
-            .then(res => this.props.submit(this.state.data)
+      submit = data => {
+            this.setState({isLoading : true})
+            return this.props.submit(data)
             .then(res =>  this.setState({ isLoading : false }))
-            .catch(err =>  this.setState({ isLoading : false })))
-           
-         })
-        axios.all(upload).then((res) => console.log('axios.all'))
+            .catch(err =>  this.setState({ isLoading : false }))
       }
 
     render() {
-        const { images , isLoading , data , thumbnial } = this.state
+        const { isLoading } = this.state
         return (
             <Form 
-                onSubmit={() => this.submit(images,thumbnial)} 
+                onSubmit={() => this.submit(this.state.data)} 
                 size='small' 
                 loading={isLoading}
             >
@@ -234,7 +231,7 @@ class CreateProductForm extends Component {
                     </Form.Field>
                     <Form.Field width={8}>
                         <Dropzone 
-                            onDrop={this.onDrop.bind(this)}
+                            onDrop={this.onProductImagesChange.bind(this)}
                             style={{
                                 display:'flex',
                                 justifyContent:'center',
@@ -249,23 +246,6 @@ class CreateProductForm extends Component {
                         </Dropzone>
                     </Form.Field>
                 </Form.Group>
-                    <Form.Field>
-                        <List>
-                            {images.map((image,idx) => 
-                                <List.Item 
-                                    style={{overflow:'hidden'}} 
-                                    key={idx}
-                                >
-                                <div>
-                                    <div style={{width:'92%',overflow:'hidden'}}>
-                                    <p> {image.name} </p></div>
-                                    <List.Icon name={'x'}
-                                        style={{position:'relative',top:'-18px',left:'304px'}}
-                                    />
-                                </div>
-                                </List.Item>)}
-                        </List>
-                    </Form.Field>
                     <Form.Field>
                         <Form.Button
                         color='red' 

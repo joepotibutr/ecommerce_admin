@@ -5,14 +5,15 @@ import RenderProducts from '../components/RenderProducts'
 import { setVisibleProducts } from '../actions'
 import { connect } from 'react-redux'
 import CreateProductForm from '../components/CreateProductForm'
-import { createProduct } from '../actions'
+import { createProduct , editProduct , deleteProduct } from '../actions'
 
 class Products extends Component {
     
     componentDidMount() {
         this.props.setVisibleProducts()
     }
-    
+    del = data => this.props.deleteProduct(data).then(() => this.props.history.push('/products'))
+    edit = data => this.props.editProduct(data).then(() => this.props.history.push('/products'))
     submit = data => this.props.createProduct(data).then(() => this.props.history.push('/products'))
 
     render() {
@@ -42,7 +43,10 @@ class Products extends Component {
                 <Grid.Row>
                     <Grid.Column>
                         <ProductsTable>
-                            <RenderProducts/>
+                            <RenderProducts
+                                del={this.del}
+                                submit={this.edit}
+                            />
                         </ProductsTable>
                     </Grid.Column>
                 </Grid.Row>
@@ -51,4 +55,9 @@ class Products extends Component {
     }
 }
 
-export default connect(null,{setVisibleProducts,createProduct})(Products)
+export default connect(null,{
+    setVisibleProducts,
+    createProduct,
+    deleteProduct,
+    editProduct
+})(Products)

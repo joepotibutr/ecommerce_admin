@@ -4,14 +4,13 @@ import { connect } from 'react-redux'
 import { getVisibleProducts } from '../../reducers/products'
 import EditProductForm from '../EditProductForm'
 
-const RenderProducts = ({ products }) => {
+const RenderProducts = ({ products , submit , del }) => {
      const mapProducts = products.map((product,index) => 
     <Table.Row key={index}>
         <Table.Cell textAlign={'center'}>{product.id}</Table.Cell>
         <Table.Cell>{product.title}</Table.Cell>
         <Table.Cell>{product.category}</Table.Cell>
         <Table.Cell>{product.price}</Table.Cell>
-        <Table.Cell textAlign={'center'} ><Icon name='window restore'/></Table.Cell>
         <Table.Cell textAlign={'center'} >
         <Modal 
         size={'mini'} 
@@ -22,12 +21,13 @@ const RenderProducts = ({ products }) => {
         <Modal.Content>
             <Modal.Description>
                 <EditProductForm
-                    
+                    submit={submit}
                 />
             </Modal.Description>
         </Modal.Content>
         </Modal>
         </Table.Cell>
+        <Table.Cell textAlign={'center'} ><Icon name='delete'/></Table.Cell>
     </Table.Row>
 )
 

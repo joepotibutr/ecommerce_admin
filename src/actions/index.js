@@ -55,3 +55,9 @@ export const setVisibleProducts = () => dispatch => {
 
 export const createProduct = data => dispatch => axios.post('/api/products',data).then(
     res => dispatch({ type : types.CREATE_PRODUCT_SUCCESS }))
+
+export const editProduct = data => dispatch => axios.post('/api/products/edit',data).then(
+    res => dispatch({ type : types.EDIT_PRODUCT_SUCCESS }))
+    
+export const deleteProduct = id => dispatch => axios.post('/api/products/del',id).then(
+    res => dispatch({ type : types.DELETE_PRODUCT_SUCCESS }))
