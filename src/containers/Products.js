@@ -68,7 +68,7 @@ class Products extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin
+    isAuthenticated : !!state.admin.username
 })
 
 

@@ -1,11 +1,14 @@
 import React from 'react'
 import { Menu , Icon , Image ,Dropdown , Feed , Label } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { logout } from '../../actions'
 
 const avatar = ( <Image centered shape='circular' size={'mini'} src='https://react.semantic-ui.com/assets/images/avatar/large/patrick.png' />)
 
 
 
-const NotificationBar = () => {
+const NotificationBar = ({ admin , logout }) => {
+    console.log(admin)
     return (
         <Menu borderless size={'massive'}  style={{marginTop:'0',zIndex:'2'}}>
         <Menu.Item>
@@ -34,7 +37,7 @@ const NotificationBar = () => {
           </Dropdown>
         </Menu.Item>
         <Menu.Item>
-          <label style={{fontSize:'14px'}}>Vatchrapong Pothiboot</label>
+          {/* <label style={{fontSize:'14px'}}>{admin}</label> */}
         </Menu.Item>
         <Menu.Item>
     
@@ -42,7 +45,9 @@ const NotificationBar = () => {
             pointing={'top right'} icon={null} trigger={avatar}>
               <Dropdown.Menu  style={{fontSize:'14px',width:'150px'}} >
                 <Dropdown.Item text={'Setting'} icon={'setting'}/>
-                <Dropdown.Item text={'Sign Out'} icon={'sign out'}/>
+                <Dropdown.Item 
+                onClick={logout}
+                text={'Sign Out'} icon={'sign out'}/>
               
               </Dropdown.Menu>
           </Dropdown>
@@ -54,4 +59,9 @@ const NotificationBar = () => {
     )
 }
 
-export default NotificationBar
+const mapStateToProps = state => ({
+    admin : state.admin
+})
+
+
+export default connect(mapStateToProps,{logout})(NotificationBar)

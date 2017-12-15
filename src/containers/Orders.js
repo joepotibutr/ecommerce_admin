@@ -41,7 +41,7 @@ class Orders extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin
+    isAuthenticated : !!state.admin.username
 })
 
 export default connect(mapStateToProps,{setVisibleOrders})(Orders)

@@ -1,5 +1,8 @@
 import * as types from '../constants/ActionTypes'
 import axios from 'axios'
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory()
+
 
 const fetchUsers = users => ({
     type : types.FETCH_USERS , 
@@ -16,9 +19,9 @@ const fetchProducts = products => ({
     products
 })
 
-const adminLoggedIn = admin => ({
+const adminLoggedIn = data => ({
     type : types.ADMIN_LOGGED_IN,
-    admin
+    data
 })
 
 const adminLoggedOut = () => ({
@@ -27,15 +30,15 @@ const adminLoggedOut = () => ({
 
 export const login = data => dispatch => axios.post('/api/admin',data)
     .then(admin => {
-        console.log(admin)
+        const data = admin.data
         localStorage.admin = admin.data.username
-        dispatch(adminLoggedIn(admin.data))
-    })
+      return  dispatch(adminLoggedIn(data))
+    }).then(history.push('/overview'))
     
 
 export const logout = () => dispatch => {
     localStorage.removeItem('admin')
-    dispatch(adminLoggedOut())
+    return dispatch(adminLoggedOut())
 }
 
 
