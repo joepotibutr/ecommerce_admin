@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card , Label , Statistic , Container } from 'semantic-ui-react'
 
-const RenderStatistic = () => {
+const RenderStatistic = ({ realTotal , realOrders }) => {
     return (
         <Card.Group itemsPerRow={'3'}>
         <Card>
@@ -9,7 +9,7 @@ const RenderStatistic = () => {
                 <Label size={'large'} color='red' ribbon>Orders</Label>
                 <Container textAlign='center'>
                 <Statistic>
-                    <Statistic.Value>452</Statistic.Value>
+                    <Statistic.Value>{realOrders}</Statistic.Value>
                 </Statistic>
                 </Container>
             </Card.Content>
@@ -19,7 +19,7 @@ const RenderStatistic = () => {
                 <Label size={'large'} color='green' ribbon>Income</Label>
                 <Container textAlign='center'>
                 <Statistic >
-                    <Statistic.Value>3,452</Statistic.Value>
+                    <Statistic.Value>{realTotal}</Statistic.Value>
                     </Statistic>
                 </Container>
             </Card.Content>

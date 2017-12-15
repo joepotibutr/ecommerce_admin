@@ -11,11 +11,16 @@ import Orders from './Orders'
 import SideNav from '../components/SideNav'
 import NotificationBar from '../components/NotificationBar'
 import { connect } from 'react-redux'
+import { setVisibleOrders } from '../actions'
 
 
 class App extends Component {
 
-
+  
+  componentDidMount() {
+    this.props.setVisibleOrders()
+  }
+  
     render() {
 
       return (
@@ -34,4 +39,4 @@ class App extends Component {
     }
 }
 
-export default App
+export default connect(null,{setVisibleOrders})(App)
