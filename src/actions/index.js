@@ -25,10 +25,11 @@ const adminLoggedOut = () => ({
     type : types.ADMIN_LOGGED_OUT
 })
 
-export const login = credentials => dispatch => axios.post('/admin',credentials)
+export const login = data => dispatch => axios.post('/api/admin',data)
     .then(admin => {
-        localStorage.admin = admin.fullname
-        dispatch(adminLoggedIn(admin))
+        console.log(admin)
+        localStorage.admin = admin.data.username
+        dispatch(adminLoggedIn(admin.data))
     })
     
 

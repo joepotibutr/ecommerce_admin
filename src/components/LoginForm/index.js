@@ -30,12 +30,16 @@ class LoginForm extends Component {
         <Segment padded={'very'}>
             <Form size='large' onSubmit={this.onSubmit} loading={this.state.loading}>
                 <Form.Input
+                onChange={this.onChange}
+                name='username'
                 fluid
                 icon='user'
                 iconPosition='left'
                 placeholder='Username'
                 />
                 <Form.Input
+                 onChange={this.onChange}
+                name='password'
                 fluid
                 icon='lock'
                 iconPosition='left'
@@ -43,7 +47,7 @@ class LoginForm extends Component {
                 type='password'
                 />
 
-                <Button fluid size='large'>
+                <Button fluid color='black' size='large'>
                     Login
                 </Button>
             </Form>
