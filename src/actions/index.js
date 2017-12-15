@@ -16,6 +16,27 @@ const fetchProducts = products => ({
     products
 })
 
+const adminLoggedIn = admin => ({
+    type : types.ADMIN_LOGGED_IN,
+    admin
+})
+
+const adminLoggedOut = () => ({
+    type : types.ADMIN_LOGGED_OUT
+})
+
+export const login = credentials => dispatch => axios.post('/admin',credentials)
+    .then(user => {
+        localStorage.admin = user.email
+        dispatch(adminLoggedIn(user))
+    })
+    
+
+export const logout = () => dispatch => {
+    localStorage.removeItem('admin')
+    dispatch(adminLoggedOut())
+}
+
 
 export const setVisibleUsers = () => dispatch => {
     axios.get('/api/users').then((res) => { 

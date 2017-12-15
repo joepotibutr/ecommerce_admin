@@ -2,9 +2,6 @@ import { DELETE_USER_SUCCESS ,FETCH_USERS } from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
 
 
-const initialState = {
-    users : {}
-}
 
 const fetchUsers = (state = [],action) => {
     switch(action.type) {
