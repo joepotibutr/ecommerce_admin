@@ -1,10 +1,19 @@
 import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import RenderStatistic from '../components/RenderStatistic'
+import SideNav from '../components/SideNav'
+import NotificationBar from '../components/NotificationBar'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 class Overview extends Component {
     render() {
+        if(this.props.isAuthenticated)
         return (
+            <div>
+            <SideNav/>
+            <NotificationBar/>
+            <div style={{float:'right',width:'86%',padding:'20px 60px'}}>
                 <Grid style={{padding:'30px'}}>
                     {/* <Grid.Row><h4>Ecommerce Overview</h4></Grid.Row> */}
                     <Grid.Row>
@@ -20,8 +29,15 @@ class Overview extends Component {
 
                     
                 </Grid> 
+                </div>
+            </div>
         )
+        else return <Redirect to='/' />
     }
 }
 
-export default Overview
+const mapStateToProps = (state) => ({
+    isAuthenticated : !!state.admin
+})
+
+export default connect(mapStateToProps)(Overview)

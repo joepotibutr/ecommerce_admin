@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import LoginForm from '../components/LoginForm'
 import { spring , Motion } from 'react-motion'
+import { login } from '../actions'
+import { connect } from 'react-redux'
+
 
 class LoginAdmin extends Component {
+ 
+    submit = data =>  this.props.login(data)
+            .then(() => this.props.history.push('/overview'))
+  
+
     render() {
         return (
             <Motion 
@@ -18,7 +26,9 @@ class LoginAdmin extends Component {
                         verticalAlign='middle'
                         >
                             <Grid.Column style={{ maxWidth: 450 }}>
-                                <LoginForm/>
+                                <LoginForm
+                                    submit={this.submit}
+                                />
                             </Grid.Column>
                         </Grid>
                     </div>
@@ -28,4 +38,4 @@ class LoginAdmin extends Component {
     }
 }
 
-export default LoginAdmin
+export default connect(null,{ login })(LoginAdmin)

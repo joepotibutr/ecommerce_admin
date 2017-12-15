@@ -6,6 +6,9 @@ import { setVisibleProducts } from '../actions'
 import { connect } from 'react-redux'
 import CreateProductForm from '../components/CreateProductForm'
 import { createProduct , editProduct , deleteProduct } from '../actions'
+import SideNav from '../components/SideNav'
+import NotificationBar from '../components/NotificationBar'
+import { Redirect } from 'react-router-dom'
 
 class Products extends Component {
     
@@ -17,8 +20,14 @@ class Products extends Component {
     submit = data => this.props.createProduct(data).then(() => this.props.history.push('/products'))
 
     render() {
+        if(this.props.isAuthenticated)
         return (
+            <div>
+            <SideNav/>
+            <NotificationBar/>
+            <div style={{float:'right',width:'86%',padding:'20px 60px'}}>
             <Grid>
+               
                  <Grid.Row columns={2}>
                     <Grid.Column verticalAlign={'bottom'}>
                         <Header as={'h4'}>EDIT / SHOW PRODUCTS</Header>
@@ -51,11 +60,19 @@ class Products extends Component {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
+            </div>
+            </div>
         )
+        else return <Redirect to='/' />
     }
 }
 
-export default connect(null,{
+const mapStateToProps = (state) => ({
+    isAuthenticated : !!state.admin
+})
+
+
+export default connect(mapStateToProps,{
     setVisibleProducts,
     createProduct,
     deleteProduct,

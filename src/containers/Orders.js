@@ -4,13 +4,21 @@ import OrdersTable from '../components/OrdersTable'
 import RenderOrders from '../components/RenderOrders'
 import { connect } from 'react-redux'
 import { setVisibleOrders } from '../actions'
+import SideNav from '../components/SideNav'
+import NotificationBar from '../components/NotificationBar'
+import { Redirect } from 'react-router-dom'
 
 class Orders extends Component {
     componentDidMount(){
         this.props.setVisibleOrders()
     }
     render() {
+        if(this.props.isAuthenticated)
         return (
+            <div>
+            <SideNav/>
+            <NotificationBar/>
+            <div style={{float:'right',width:'86%',padding:'20px 60px'}}>
             <Grid>
                  <Grid.Row>
                     <Grid.Column>
@@ -25,8 +33,15 @@ class Orders extends Component {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
+            </div>
+            </div>
         )
+        else return <Redirect to='/' />
     }
 }
 
-export default connect(null,{setVisibleOrders})(Orders)
+const mapStateToProps = (state) => ({
+    isAuthenticated : !!state.admin
+})
+
+export default connect(mapStateToProps,{setVisibleOrders})(Orders)
