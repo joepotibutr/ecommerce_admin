@@ -3,7 +3,7 @@ import { Grid , Header , Button , Icon , Modal } from 'semantic-ui-react'
 import UsersTable from '../components/UsersTable'
 import RenderUsers from '../components/RenderUsers'
 import { connect } from 'react-redux'
-import { setVisibleUsers } from '../actions'
+import { setVisibleUsers , deleteUser } from '../actions'
 import UserDetail from '../components/UserDetail'
 import SideNav from '../components/SideNav'
 import NotificationBar from '../components/NotificationBar'
@@ -15,7 +15,6 @@ class ManageUsers extends Component {
     }
 
     render() {
-        if(this.props.isAuthenticated)
         return (
             <div>
             <SideNav/>
@@ -46,7 +45,9 @@ class ManageUsers extends Component {
                 <Grid.Row>
                     <Grid.Column>
                         <UsersTable>
-                            <RenderUsers/>
+                            <RenderUsers
+                                del={this.props.deleteUser}
+                            />
                         </UsersTable>
                     </Grid.Column>
                 </Grid.Row>
@@ -54,13 +55,12 @@ class ManageUsers extends Component {
             </div>
             </div>
         )
-        else return <Redirect to='/' />
     }
 }
 
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin.username
+    isAuthenticated : !!state.admin.token
 })
 
-export default connect(mapStateToProps,{setVisibleUsers})(ManageUsers)
+export default connect(mapStateToProps,{setVisibleUsers,deleteUser})(ManageUsers)

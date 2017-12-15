@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Form , Segment } from 'semantic-ui-react'
+import { Redirect } from 'react-router-dom'
 
 class LoginForm extends Component {
     constructor(props){
@@ -9,6 +10,7 @@ class LoginForm extends Component {
             username : '',
             password : '' },
             loading:false,
+            redirect: false
         }
     }
     onChange = e => {
@@ -18,14 +20,17 @@ class LoginForm extends Component {
     }
     onSubmit = () => {
         this.setState({ loading : true })
-        setTimeout(() =>
-        this.props.submit(this.state.data)
-        .catch(err => this.setState({ 
-            loading : false 
-        })),2000)
+        setTimeout(() => {
+            this.setState({
+                redirect : true,
+                loading:false
+            })
+            },2000)
 }
 
     render() {
+        if(this.state.redirect)return <Redirect to='/overview'/>
+
         return (
         <Segment padded={'very'}>
             <Form size='large' onSubmit={this.onSubmit} loading={this.state.loading}>

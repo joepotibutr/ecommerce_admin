@@ -15,12 +15,11 @@ class Products extends Component {
     componentDidMount() {
         this.props.setVisibleProducts()
     }
-    del = id => this.props.deleteProduct(id).then(() => this.props.history.push('/products'))
-    edit = data => this.props.editProduct(data).then(() => this.props.history.push('/products'))
-    submit = data => this.props.createProduct(data).then(() => this.props.history.push('/products'))
+    del = id => this.props.deleteProduct(id)
+    edit = data => this.props.editProduct(data)
+    submit = data => this.props.createProduct(data)
 
     render() {
-        if(this.props.isAuthenticated)
         return (
             <div>
             <SideNav/>
@@ -63,12 +62,11 @@ class Products extends Component {
             </div>
             </div>
         )
-        else return <Redirect to='/' />
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin.username
+    isAuthenticated : !!state.admin.token
 })
 
 

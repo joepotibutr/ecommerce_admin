@@ -8,7 +8,6 @@ import { Redirect } from 'react-router-dom'
 
 class Overview extends Component {
     render() {
-        if(this.props.isAuthenticated)
         return (
             <div>
             <SideNav/>
@@ -32,12 +31,11 @@ class Overview extends Component {
                 </div>
             </div>
         )
-        else return <Redirect to='/' />
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin.username
+    isAuthenticated : !!state.admin.token
 })
 
 export default connect(mapStateToProps)(Overview)

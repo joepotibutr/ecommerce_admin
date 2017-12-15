@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import LoginForm from '../components/LoginForm'
 import { spring , Motion } from 'react-motion'
-import { login } from '../actions'
-import { connect } from 'react-redux'
+// import { login } from '../actions'
+// import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 
 class LoginAdmin extends Component {
  
-    submit = data =>  this.props.login(data)
-            .then(() => this.props.history.push('/overview'))
+    // submit = () => <Redirect to='overview'/>
   
 
     render() {
@@ -27,7 +27,7 @@ class LoginAdmin extends Component {
                         >
                             <Grid.Column style={{ maxWidth: 450 }}>
                                 <LoginForm
-                                    submit={this.submit}
+                                    // submit={this.submit}
                                 />
                             </Grid.Column>
                         </Grid>
@@ -38,4 +38,4 @@ class LoginAdmin extends Component {
     }
 }
 
-export default connect(null,{ login })(LoginAdmin)
+export default LoginAdmin

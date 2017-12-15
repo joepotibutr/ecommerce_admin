@@ -19,21 +19,25 @@ const fetchProducts = products => ({
     products
 })
 
-const adminLoggedIn = data => ({
-    type : types.ADMIN_LOGGED_IN,
-    data
+const adminLoggedIn = () => ({
+    type : types.ADMIN_LOGGED_IN
 })
 
 const adminLoggedOut = () => ({
     type : types.ADMIN_LOGGED_OUT
 })
 
-export const login = data => dispatch => axios.post('/api/admin',data)
-    .then(admin => {
-        const data = admin.data
-        localStorage.admin = admin.data.username
-      return  dispatch(adminLoggedIn(data))
-    }).then(history.push('/overview'))
+// export const login = () => dispatch => 
+//     {
+//         dispatch(adminLoggedIn())
+//     }
+// axios.post('/api/admin',data)
+//     .then(admin => {
+//         const data = admin.data
+//         localStorage.admin = admin.data.username
+//       return  dispatch(adminLoggedIn(data))
+//     }).then(history.push('/overview'))
+
     
 
 export const logout = () => dispatch => {

@@ -13,7 +13,6 @@ class Orders extends Component {
         this.props.setVisibleOrders()
     }
     render() {
-        if(this.props.isAuthenticated)
         return (
             <div>
             <SideNav/>
@@ -36,12 +35,11 @@ class Orders extends Component {
             </div>
             </div>
         )
-        else return <Redirect to='/' />
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated : !!state.admin.username
+    isAuthenticated : !!state.admin.token
 })
 
 export default connect(mapStateToProps,{setVisibleOrders})(Orders)
