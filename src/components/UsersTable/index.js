@@ -12,7 +12,6 @@ const UsersTable = ({ users , children }) => {
                         <Table.HeaderCell width={'2'} textAlign={'center'} >User ID</Table.HeaderCell>
                         <Table.HeaderCell>Email</Table.HeaderCell>
                         <Table.HeaderCell>Registration Date</Table.HeaderCell>
-                        <Table.HeaderCell textAlign={'center'}>User Detail</Table.HeaderCell>
                         <Table.HeaderCell textAlign={'center'} >Delete User</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>

@@ -9,7 +9,6 @@ const RenderUsers = ({ users }) => {
           <Table.Cell textAlign={'center'} >{index + 1}</Table.Cell>
           <Table.Cell >{user.email}</Table.Cell>
           <Table.Cell>{user.createdAt}</Table.Cell>
-          <Table.Cell textAlign={'center'}>{user.type}</Table.Cell>
           <Table.Cell textAlign={'center'} ><Icon name={'x'}/></Table.Cell>
       </Table.Row>
     )

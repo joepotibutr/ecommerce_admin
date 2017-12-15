@@ -1,4 +1,4 @@
-import { ADD_USER , REMOVE_USER , FETCH_USERS } from '../constants/ActionTypes'
+import { DELETE_USER_SUCCESS ,FETCH_USERS } from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
 
 
@@ -15,21 +15,15 @@ const fetchUsers = (state = [],action) => {
     }
 }
 
-const userHandler = (state = initialState.users,action) => {
-    switch(action.type) {
-        case ADD_USER :
+
+export const user = (state = {}, action) => {
+    switch (action.type) {
+        case DELETE_USER_SUCCESS :
+            return {}
+        default:
             return state
-        case REMOVE_USER :
-            return {
-                users : [
-                    ...state.users.slice(0,action.index),
-                    ...state.users.slice(action.index + 1)
-                ]
-            }
-        default : return state
     }
 }
-
 export const getVisibleUsers = state => state.fetchUsers
 
-export default combineReducers({ userHandler , fetchUsers })
+export default combineReducers({ user , fetchUsers })

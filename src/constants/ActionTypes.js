@@ -1,6 +1,6 @@
 export const FETCH_USERS = 'FETCH_USERS'
 export const ADD_USER = 'ADD_USER'
-export const REMOVE_USER = 'REMOVE_USER'
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS'
 
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
 export const EDIT_PRODUCTS = 'EDIT_PRODUCTS'
